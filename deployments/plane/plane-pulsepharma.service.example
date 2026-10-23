@@ -1,0 +1,22 @@
+[Unit]
+Description=Plane Pulsepharma Docker Compose stack
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=dte
+Group=dte
+WorkingDirectory=/var/www/plane
+EnvironmentFile=/etc/plane-pulsepharma/compose.env
+ExecStartPre=/usr/bin/docker compose --env-file /etc/plane-pulsepharma/compose.env -p plane-pulsepharma -f docker-compose.production.yml config --quiet
+ExecStart=/usr/bin/docker compose --env-file /etc/plane-pulsepharma/compose.env -p plane-pulsepharma -f docker-compose.production.yml up -d web admin space api worker beat-worker live proxy
+ExecStop=/usr/bin/docker compose --env-file /etc/plane-pulsepharma/compose.env -p plane-pulsepharma -f docker-compose.production.yml down
+ExecReload=/usr/bin/docker compose --env-file /etc/plane-pulsepharma/compose.env -p plane-pulsepharma -f docker-compose.production.yml up -d --build web admin space api worker beat-worker live proxy
+TimeoutStartSec=0
+TimeoutStopSec=120
+
+[Install]
+WantedBy=multi-user.target

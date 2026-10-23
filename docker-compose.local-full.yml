@@ -1,0 +1,75 @@
+services:
+  api:
+    depends_on:
+      plane-db:
+        condition: service_healthy
+      plane-minio:
+        condition: service_started
+
+  worker:
+    depends_on:
+      plane-db:
+        condition: service_healthy
+      plane-minio:
+        condition: service_started
+
+  beat-worker:
+    depends_on:
+      plane-db:
+        condition: service_healthy
+      plane-minio:
+        condition: service_started
+
+  migrator:
+    depends_on:
+      plane-db:
+        condition: service_healthy
+      plane-minio:
+        condition: service_started
+
+  proxy:
+    environment:
+      BUCKET_NAME: uploads
+
+  plane-db:
+    image: postgres:15.7-alpine
+    restart: unless-stopped
+    command: postgres -c 'max_connections=1000'
+    env_file:
+      - ./deployments/plane/local-root.env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-plane}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-plane}
+      POSTGRES_DB: ${POSTGRES_DB:-plane}
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - plane-local-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-plane} -d ${POSTGRES_DB:-plane}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  plane-minio:
+    image: docker.io/pgsty/silo:RELEASE.2026-09-16T00-00-00Z
+    restart: unless-stopped
+    env_file:
+      - ./deployments/plane/local-root.env
+    environment:
+      MINIO_ROOT_USER: ${AWS_ACCESS_KEY_ID:-local-access-key}
+      MINIO_ROOT_PASSWORD: ${AWS_SECRET_ACCESS_KEY:-local-secret-key}
+    entrypoint: >
+      /bin/sh -c "
+      mkdir -p /export/${AWS_S3_BUCKET_NAME:-uploads} &&
+      silo server /export --console-address ':9090' &
+      sleep 5 &&
+      mc alias set local http://localhost:9000 ${AWS_ACCESS_KEY_ID:-local-access-key} ${AWS_SECRET_ACCESS_KEY:-local-secret-key} &&
+      mc mb local/${AWS_S3_BUCKET_NAME:-uploads} -p || true &&
+      tail -f /dev/null
+      "
+    volumes:
+      - plane-local-uploads:/export
+
+volumes:
+  plane-local-pgdata:
+  plane-local-uploads:

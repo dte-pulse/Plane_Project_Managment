@@ -117,3 +117,10 @@ packages/i18n/src/types/keys.generated.ts
 
 # Local security notes (not for version control)
 /security/
+
+# Plane deployment secrets and local runtime overrides
+/deployments/plane/local-*.env
+/deployments/plane/compose.env
+/deployments/plane/root.env
+/deployments/plane/api.env
+/deployments/plane/live.env
