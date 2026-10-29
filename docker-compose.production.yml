@@ -153,10 +153,6 @@ services:
     restart: unless-stopped
     env_file:
       - ${PLANE_ROOT_ENV_FILE:?PLANE_ROOT_ENV_FILE is required}
-    environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-plane}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-plane}
-      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST:-plane}
     volumes:
       - plane-rabbitmq-data:/var/lib/rabbitmq
 

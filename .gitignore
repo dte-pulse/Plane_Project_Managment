@@ -119,6 +119,7 @@ packages/i18n/src/types/keys.generated.ts
 /security/
 
 # Plane deployment secrets and local runtime overrides
+/plane.env
 /deployments/plane/local-*.env
 /deployments/plane/compose.env
 /deployments/plane/root.env

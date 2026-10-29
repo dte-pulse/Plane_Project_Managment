@@ -9,11 +9,12 @@
 :3000 {
 	root * /usr/share/caddy/html
 
-	# Per-client-IP rate limiting for static asset requests
+	# Multiple office users can share one client IP behind NAT. Keep a high
+	# static-asset limit so a full app load and concurrent users do not collide.
 	rate_limit {
 		zone static {
 			key {client_ip}
-			events 300
+			events 5000
 			window 1m
 		}
 	}

@@ -2,15 +2,18 @@
 
 This deployment is isolated for the shared `dte-apps` server.
 
-Public URL:
+Initial office-network URL:
 
 ```text
-https://plane.pulsepharma.net:51028
+http://192.168.0.113
 ```
 
-The existing host Nginx terminates TLS on port `443` and proxies to the Plane
-proxy over a loopback port. The default loopback port in the deployment files is
-`8106`; change it only if that port is already occupied.
+The host Nginx already listens on port `80`. Plane gets a separate virtual host
+matching the server IP and proxies to the production Compose proxy on
+`127.0.0.1:8106`. Plane does not bind host ports `80`, `443`, `8000`, or
+`3000`-`3100`. This initial HTTP setup is for the office network or VPN only.
+After validation, switch to `plane.pulsepharma.net` with HTTPS at the existing
+external URL `https://plane.pulsepharma.net:51028`.
 
 ## Local production-like smoke test
 
@@ -117,7 +120,7 @@ docker compose \
 The local `.env` files are ignored by Git. Do not replace them with production
 credentials.
 
-## EC2 deployment
+## Shared server deployment
 
 Create a private deployment directory:
 
@@ -126,8 +129,8 @@ sudo install -d -o dte -g dte -m 700 /etc/plane-pulsepharma
 sudo install -d -o dte -g dte -m 755 /var/www/plane
 ```
 
-Clone the repository into `/var/www/plane` using a read-only GitHub deploy key.
-Then copy the example files into the private deployment directory:
+Keep the repository at `/var/www/plane`. Copy the example files into the
+private deployment directory:
 
 ```bash
 cd /var/www/plane
@@ -138,20 +141,23 @@ cp deployments/plane/live.env.example /etc/plane-pulsepharma/live.env
 cp deployments/plane/Caddyfile.external /etc/plane-pulsepharma/Caddyfile.external
 ```
 
-Edit the private files and replace every placeholder. Generate fresh secrets:
+Edit the private files with the existing Aiven, AWS, and SMTP credentials. Keep
+`SECRET_KEY` identical to the one already used with this Aiven database; Plane
+uses it to decrypt stored integration settings. Generate a fresh live-service
+secret and RabbitMQ password, and put the same live-service secret in both
+`api.env` and `live.env`.
 
 ```bash
 openssl rand -hex 32
 ```
 
-The same `LIVE_SERVER_SECRET_KEY` must be used in both `api.env` and `live.env`.
-The real Aiven URL and rotated AWS credentials belong only in
-`/etc/plane-pulsepharma/api.env`; never commit them.
+The Aiven URL, AWS keys, SMTP app password, and Django secret belong only in the
+private files under `/etc/plane-pulsepharma`; never commit them.
 
-Set these public values in `compose.env`:
+Set these values in `compose.env`:
 
 ```env
-PLANE_PUBLIC_URL=https://plane.pulsepharma.net:51028
+PLANE_PUBLIC_URL=http://192.168.0.113
 PLANE_PROXY_PORT=8106
 ```
 
@@ -170,6 +176,11 @@ docker compose \
   -p plane-pulsepharma \
   -f docker-compose.production.yml \
   build
+
+# Stop the interactive development apps and local Compose stack before running
+# migrations or starting production services; both configurations use the same
+# Aiven database. Press Ctrl-C in the terminal running `pnpm dev`, then run:
+docker compose -p plane -f docker-compose-local.yml down
 
 docker compose \
   --env-file /etc/plane-pulsepharma/compose.env \
@@ -190,9 +201,22 @@ docker compose \
   up -d web admin space api worker beat-worker live proxy
 ```
 
+The SMTP configuration is stored in the Aiven database and may already contain
+values created by the earlier development startup. After the production API is
+up, sync the private environment values (the script encrypts the app password
+with the existing Django `SECRET_KEY` and never prints it):
+
+```bash
+docker compose \
+  --env-file /etc/plane-pulsepharma/compose.env \
+  -p plane-pulsepharma \
+  -f docker-compose.production.yml \
+  exec -T api python manage.py shell < deployments/plane/configure-smtp.py
+```
+
 ## systemd on EC2
 
-After the first manual deployment succeeds, install the provided unit:
+After the production stack starts successfully, install the provided unit:
 
 ```bash
 sudo cp deployments/plane/plane-pulsepharma.service.example \
@@ -203,8 +227,10 @@ sudo systemctl start plane-pulsepharma.service
 sudo systemctl status plane-pulsepharma.service
 ```
 
-The unit manages only the Compose project named `plane-pulsepharma`; it does not
-stop or restart the other applications on the shared server.
+The unit starts only the Compose project named `plane-pulsepharma`; it does not
+stop or restart the other applications on the shared server. Docker's
+`unless-stopped` restart policy recovers individual Plane containers after a
+failure. The unit starts the project on boot.
 
 For a new deployment, run the migration once before starting the unit. For later
 code deployments:
@@ -233,25 +259,37 @@ The only host port published by Plane is the loopback proxy port:
 Plane does not publish ports `80`, `443`, `8000`, `3000`, `3001`, `3002`, or
 `3100` on the host.
 
-## Nginx
+## Nginx HTTP access
 
-Copy `nginx.plane.conf.example` to the host Nginx sites directory, verify that
-the existing wildcard certificate covers `plane.pulsepharma.net`, then enable it:
+Copy `nginx.plane-ip.conf.example` to the host Nginx sites directory and enable
+it as a separate site. It matches only `192.168.0.113`, so the existing Nginx
+sites continue to handle their own hostnames:
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/plane.pulsepharma.net \
-  /etc/nginx/sites-enabled/plane.pulsepharma.net
+sudo cp deployments/plane/nginx.plane-ip.conf.example \
+  /etc/nginx/sites-available/plane-ip
+sudo ln -s /etc/nginx/sites-available/plane-ip /etc/nginx/sites-enabled/plane-ip
 sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-The Nginx configuration forwards:
+The route is:
 
 ```text
-https://plane.pulsepharma.net:51028 -> http://127.0.0.1:8106
+http://192.168.0.113 -> http://127.0.0.1:8106
 ```
 
-The `/live/` route includes WebSocket upgrade headers and a long read timeout.
+The proxy forwards WebSocket upgrades for live collaboration and allows Plane's
+configured upload size. The example permits the current `192.168.0.0/24` LAN
+and localhost only; adjust the allowed subnet if the office/VPN clients use a
+different CIDR.
+
+## Later HTTPS setup
+
+After the domain points to this server, change `PLANE_PUBLIC_URL` and the API
+and live origins to `https://plane.pulsepharma.net:51028`, verify the existing
+certificate covers that hostname, then replace the IP site with
+`nginx.plane.conf.example`. That site redirects HTTP to HTTPS.
 
 ## Post-deploy checks
 
@@ -263,8 +301,8 @@ docker compose \
   ps
 
 curl -I http://127.0.0.1:8106/
-curl -k -H 'Host: plane.pulsepharma.net' https://127.0.0.1/
-curl -k https://plane.pulsepharma.net:51028/
+curl -I -H 'Host: 192.168.0.113' http://127.0.0.1/
+curl -I http://192.168.0.113/
 ```
 
 Inspect failures without printing the environment files:
