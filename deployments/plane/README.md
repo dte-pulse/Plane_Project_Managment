@@ -2,6 +2,10 @@
 
 This deployment is isolated for the shared `dte-apps` server.
 
+For a fresh EC2 instance, see the step-by-step
+[EC2 deployment runbook](EC2-DEPLOYMENT.md), including credential rotation,
+environment-file setup, Nginx, systemd, and verification.
+
 Initial office-network URL:
 
 ```text
