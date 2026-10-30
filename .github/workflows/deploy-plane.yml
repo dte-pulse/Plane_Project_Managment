@@ -50,9 +50,8 @@ jobs:
             echo "Running database migrations..."
             compose run --rm migrator
 
-            echo "Reloading Plane systemd service..."
-            sudo -n /usr/bin/systemctl reload plane-pulsepharma.service
-            sudo -n /usr/bin/systemctl is-active --quiet plane-pulsepharma.service
+            echo "Starting updated Plane services..."
+            compose up -d web admin space api worker beat-worker live proxy
 
             echo "Plane deployment status:"
             compose ps

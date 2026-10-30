@@ -311,12 +311,12 @@ manual runs from the Actions tab. Add these Actions repository secrets:
 | `EC2_PORT`    | SSH port, usually `22`                  |
 
 The deployment account must be able to pull this repository, run Docker Compose,
-read `/etc/plane-pulsepharma/compose.env` and its referenced private env files,
-and run `sudo -n /usr/bin/systemctl reload plane-pulsepharma.service` without a
-password. The job validates Compose, builds the stack, runs the migrator, then
-reloads and checks only the Plane systemd service. It does not run `docker
-compose down` or restart the other host applications. Back up the external
-database before deploying application changes that include migrations.
+and read `/etc/plane-pulsepharma/compose.env` and its referenced private env
+files. The job validates Compose, builds the stack, runs the migrator, then
+starts the updated Plane services with Compose. The systemd unit remains
+responsible for starting Plane at host boot. Deployment does not run `docker
+compose down` or restart other host applications. Back up the external database
+before deploying application changes that include migrations.
 
 ## Routine code deployment
 
@@ -327,9 +327,11 @@ docker compose --env-file /etc/plane-pulsepharma/compose.env \
   -p plane-pulsepharma -f docker-compose.production.yml build
 docker compose --env-file /etc/plane-pulsepharma/compose.env \
   -p plane-pulsepharma -f docker-compose.production.yml run --rm migrator
-sudo systemctl reload plane-pulsepharma.service
+docker compose --env-file /etc/plane-pulsepharma/compose.env \
+  -p plane-pulsepharma -f docker-compose.production.yml \
+  up -d web admin space api worker beat-worker live proxy
 ```
 
-Back up the database before migrations. The unit's `ExecReload` runs Compose
-build/start and does not stop unrelated projects. Avoid `docker compose down -v`,
-which removes Plane's local RabbitMQ and Valkey data.
+Back up the database before migrations. The systemd unit starts Plane at boot.
+Avoid `docker compose down -v`, which removes Plane's local RabbitMQ and Valkey
+data.
