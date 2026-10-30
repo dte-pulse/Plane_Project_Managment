@@ -298,6 +298,26 @@ If office users sharing one NAT IP receive HTTP 429 for assets, confirm the
 web/admin Caddy configs have this repository's higher static-file limit and
 rebuild those images. This is separate from API authentication limits.
 
+### GitHub Actions deployment
+
+`.github/workflows/deploy-plane.yml` deploys on pushes to `main` and supports
+manual runs from the Actions tab. Add these Actions repository secrets:
+
+| Secret        | Value                                   |
+| ------------- | --------------------------------------- |
+| `EC2_HOST`    | Hostname or IP address used for SSH     |
+| `EC2_USER`    | Linux deployment account, such as `dte` |
+| `EC2_SSH_KEY` | Private SSH key for that account        |
+| `EC2_PORT`    | SSH port, usually `22`                  |
+
+The deployment account must be able to pull this repository, run Docker Compose,
+read `/etc/plane-pulsepharma/compose.env` and its referenced private env files,
+and run `sudo -n /usr/bin/systemctl reload plane-pulsepharma.service` without a
+password. The job validates Compose, builds the stack, runs the migrator, then
+reloads and checks only the Plane systemd service. It does not run `docker
+compose down` or restart the other host applications. Back up the external
+database before deploying application changes that include migrations.
+
 ## Routine code deployment
 
 ```bash

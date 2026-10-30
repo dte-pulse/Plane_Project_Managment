@@ -1,0 +1,58 @@
+name: Deploy Plane
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: plane-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to Plane host
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Deploy Plane over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: ${{ secrets.EC2_PORT }}
+          command_timeout: 45m
+          script: |
+            set -euo pipefail
+
+            cd /var/www/plane
+
+            compose() {
+              docker compose \
+                --env-file /etc/plane-pulsepharma/compose.env \
+                -p plane-pulsepharma \
+                -f docker-compose.production.yml \
+                "$@"
+            }
+
+            echo "Fetching latest Plane code..."
+            git pull --ff-only origin main
+
+            echo "Validating production Compose configuration..."
+            compose config --quiet
+
+            echo "Building Plane images..."
+            compose build
+
+            echo "Running database migrations..."
+            compose run --rm migrator
+
+            echo "Reloading Plane systemd service..."
+            sudo -n /usr/bin/systemctl reload plane-pulsepharma.service
+            sudo -n /usr/bin/systemctl is-active --quiet plane-pulsepharma.service
+
+            echo "Plane deployment status:"
+            compose ps
