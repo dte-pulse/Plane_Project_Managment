@@ -4,9 +4,9 @@ This runbook deploys the production Compose stack from this repository behind
 host Nginx. Replace sample hosts, addresses, usernames, and paths with values
 for the new instance.
 
-> Use HTTPS for access over the public Internet. Plain HTTP exposes login
-> credentials, session cookies, and invitation tokens. The IP-only example is
-> suitable for a restricted LAN or VPN.
+> Plane is HTTPS-only. Do not route public or office HTTP traffic on port 80 to
+> Plane. Plain HTTP exposes login credentials, session cookies, and invitation
+> tokens.
 
 ## 1. Prepare EC2 and network access
 
@@ -16,18 +16,20 @@ their current official instructions.
 
 Configure the EC2 security group and any upstream firewall/NAT:
 
-| Traffic            | Allow from                                               | Purpose                                               |
-| ------------------ | -------------------------------------------------------- | ----------------------------------------------------- |
-| TCP 22             | Administrator IPs only                                   | SSH                                                   |
-| TCP 80             | Office/VPN CIDR for HTTP, or internet only when required | Nginx HTTP and certificate validation                 |
-| TCP 443            | Approved client CIDRs or Internet when using HTTPS       | Nginx HTTPS                                           |
-| Outbound TCP 10644 | Aiven endpoint                                           | Example database port; use the provider's actual port |
-| Outbound TCP 443   | AWS and image/package registries                         | S3 and downloads                                      |
-| Outbound TCP 587   | Microsoft 365 SMTP                                       | STARTTLS email                                        |
+| Traffic            | Allow from                       | Purpose                                               |
+| ------------------ | -------------------------------- | ----------------------------------------------------- |
+| TCP 22             | Administrator IPs only           | SSH                                                   |
+| TCP 80             | Other apps only, if required     | Must not route to Plane                               |
+| TCP 443            | Approved client CIDRs            | Plane HTTPS through Nginx                             |
+| Outbound TCP 10644 | Aiven endpoint                   | Example database port; use the provider's actual port |
+| Outbound TCP 443   | AWS and image/package registries | S3 and downloads                                      |
+| Outbound TCP 587   | Microsoft 365 SMTP               | STARTTLS email                                        |
 
 Do not expose Plane container ports, RabbitMQ, or Valkey to the Internet. Plane
-publishes only a loopback proxy port; Nginx owns host ports 80 and 443. Check
-host listeners before choosing a private proxy port such as 8106:
+publishes only a loopback proxy port; Nginx owns host ports 80 and 443. Keep
+port 80 closed for Plane, and preserve it only if another host application
+requires it. Check host listeners before choosing a private proxy port such as
+8106:
 
 ```bash
 sudo ss -ltnp
@@ -85,14 +87,10 @@ TRUSTED_PROXIES=<nginx-and-docker-proxy-cidrs>
 ```
 
 `PLANE_PUBLIC_URL` is embedded into frontend images at build time and used as a
-service origin. It must match what users enter, including any non-default
-external port:
+service origin. Use the HTTPS domain on standard port 443, with no port suffix:
 
 ```text
-Direct HTTP:      http://203.0.113.20
-Forwarded HTTP:   http://203.0.113.20:51020
-Direct HTTPS:     https://plane.example.com
-Forwarded HTTPS:  https://plane.example.com:8443
+HTTPS only:       https://plane.example.com
 ```
 
 Do not add a path or trailing slash. Use the same origin in API and live CORS
@@ -225,33 +223,16 @@ by other host applications.
 
 Check that the selected loopback proxy port is free before starting Compose.
 
-### HTTP by IP or forwarded port
-
-Copy `nginx.plane-ip.conf.example` into `sites-available`. Change `server_name`
-to the IP/domain in the browser Host header and adjust `allow` to the office/VPN
-subnet. If a router maps external port `51020` to EC2 port 80, set
-`PLANE_PUBLIC_URL=http://PUBLIC_IP:51020`; Nginx still listens on port 80.
-
-```bash
-sudo cp deployments/plane/nginx.plane-ip.conf.example /etc/nginx/sites-available/plane-ip
-sudoedit /etc/nginx/sites-available/plane-ip
-sudo ln -s /etc/nginx/sites-available/plane-ip /etc/nginx/sites-enabled/plane-ip
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-With other Nginx vhosts, confirm the Plane IP/domain selects this server block
-and does not change their default vhost. Reload the existing Nginx service to
-apply changes; do not start a second `nginx` master.
-
 ### HTTPS by domain
 
 Point DNS at EC2, obtain a certificate for the domain, and adapt
-`nginx.plane.conf.example` to the certificate paths. If the network forwards
-standard public HTTPS port 443 to host port 443, use the domain without a port.
-Set `PLANE_PUBLIC_URL` and all API/live origins to the final HTTPS origin,
-including any non-default forwarded port. Rebuild web, admin, and space because
-frontend origins are embedded at build time, then validate and reload Nginx.
+`nginx.plane.conf.example` to the certificate paths. Forward standard public
+HTTPS port 443 to host port 443. Set `PLANE_PUBLIC_URL` and all API/live origins
+to `https://<domain>`. Remove any enabled Plane-specific HTTP virtual host on
+port 80 and remove Plane's port-80 firewall or router rule. Rebuild web, admin,
+and space because frontend origins are embedded at build time, then validate
+and reload Nginx. The host may keep port 80 open for unrelated applications;
+verify it does not route to Plane.
 
 ## 6. Install systemd
 

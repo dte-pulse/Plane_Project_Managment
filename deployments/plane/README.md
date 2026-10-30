@@ -6,19 +6,8 @@ For a fresh EC2 instance, see the step-by-step
 [EC2 deployment runbook](EC2-DEPLOYMENT.md), including credential rotation,
 environment-file setup, Nginx, systemd, and verification.
 
-Initial office-network URL:
-
-```text
-http://192.168.0.113
-```
-
-The host Nginx already listens on port `80`. Plane gets a separate virtual host
-matching the server IP and proxies to the production Compose proxy on
-`127.0.0.1:8106`. Plane does not bind host ports `80`, `443`, `8000`, or
-`3000`-`3100`. This initial HTTP setup is for the office network or VPN only.
-After validation, switch to `plane.pulsepharma.net` with HTTPS at
-`https://plane.pulsepharma.net:51026` when the public network forwards port
-51026 to host port 443.
+Plane is configured for HTTPS only at `https://plane.pulsepharma.net` on port 443. The host Nginx terminates TLS and proxies to the production Compose proxy
+on `127.0.0.1:8106`. Do not configure a Plane virtual host on HTTP port 80.
 
 ## Local production-like smoke test
 
@@ -162,7 +151,7 @@ private files under `/etc/plane-pulsepharma`; never commit them.
 Set these values in `compose.env`:
 
 ```env
-PLANE_PUBLIC_URL=http://192.168.0.113
+PLANE_PUBLIC_URL=https://plane.pulsepharma.net
 PLANE_PROXY_PORT=8106
 ```
 
@@ -264,38 +253,14 @@ The only host port published by Plane is the loopback proxy port:
 Plane does not publish ports `80`, `443`, `8000`, `3000`, `3001`, `3002`, or
 `3100` on the host.
 
-## Nginx HTTP access
+## HTTPS-only Nginx setup
 
-Copy `nginx.plane-ip.conf.example` to the host Nginx sites directory and enable
-it as a separate site. It matches only `192.168.0.113`, so the existing Nginx
-sites continue to handle their own hostnames:
-
-```bash
-sudo cp deployments/plane/nginx.plane-ip.conf.example \
-  /etc/nginx/sites-available/plane-ip
-sudo ln -s /etc/nginx/sites-available/plane-ip /etc/nginx/sites-enabled/plane-ip
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-The route is:
-
-```text
-http://192.168.0.113 -> http://127.0.0.1:8106
-```
-
-The proxy forwards WebSocket upgrades for live collaboration and allows Plane's
-configured upload size. The example permits the current `192.168.0.0/24` LAN
-and localhost only; adjust the allowed subnet if the office/VPN clients use a
-different CIDR.
-
-## Later HTTPS setup
-
-After the domain points to this server, change `PLANE_PUBLIC_URL` and the API
-and live origins to `https://plane.pulsepharma.net:51026`, verify the existing
-certificate covers that hostname, then replace the IP site with
-`nginx.plane.conf.example`. That site redirects HTTP to HTTPS on public port
-51026, forwarded to host port 443.
+Enable `nginx.plane.conf.example` as the Plane virtual host on port 443 and
+remove any enabled Plane-specific port 80 virtual host. Keep the server
+certificate paths valid and ensure the network firewall forwards/allows public
+TCP 443 to host port 443. The host may still use port 80 for unrelated sites;
+Plane itself must not be routed through it. Disable any other Plane HTTP route
+or port-forward on the host/network firewall.
 
 ## Post-deploy checks
 
@@ -307,9 +272,11 @@ docker compose \
   ps
 
 curl -I http://127.0.0.1:8106/
-curl -I -H 'Host: 192.168.0.113' http://127.0.0.1/
-curl -I http://192.168.0.113/
+curl -I https://plane.pulsepharma.net
 ```
+
+The loopback HTTP check is only for the private Nginx upstream. Users access
+Plane through HTTPS on port 443.
 
 Inspect failures without printing the environment files:
 
