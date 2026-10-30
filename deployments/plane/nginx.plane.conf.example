@@ -1,11 +1,11 @@
 # Install as /etc/nginx/sites-available/plane.pulsepharma.net.
-# Sophos forwards the chosen external HTTPS port to host port 443.
+# The public network forwards external HTTPS port 51026 to host port 443.
 
 server {
     listen 80;
     server_name plane.pulsepharma.net;
 
-    return 301 https://$host:51028$request_uri;
+    return 301 https://$host:51026$request_uri;
 }
 
 server {

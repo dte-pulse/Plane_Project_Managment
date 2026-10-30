@@ -92,7 +92,7 @@ external port:
 Direct HTTP:      http://203.0.113.20
 Forwarded HTTP:   http://203.0.113.20:51020
 Direct HTTPS:     https://plane.example.com
-Forwarded HTTPS:  https://plane.example.com:51028
+Forwarded HTTPS:  https://plane.example.com:8443
 ```
 
 Do not add a path or trailing slash. Use the same origin in API and live CORS
@@ -247,10 +247,11 @@ apply changes; do not start a second `nginx` master.
 ### HTTPS by domain
 
 Point DNS at EC2, obtain a certificate for the domain, and adapt
-`nginx.plane.conf.example` to the certificate paths and public forwarded port.
+`nginx.plane.conf.example` to the certificate paths. If the network forwards
+standard public HTTPS port 443 to host port 443, use the domain without a port.
 Set `PLANE_PUBLIC_URL` and all API/live origins to the final HTTPS origin,
-including any non-default port. Rebuild web, admin, and space because frontend
-origins are embedded at build time, then validate and reload Nginx.
+including any non-default forwarded port. Rebuild web, admin, and space because
+frontend origins are embedded at build time, then validate and reload Nginx.
 
 ## 6. Install systemd
 

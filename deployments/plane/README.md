@@ -16,8 +16,9 @@ The host Nginx already listens on port `80`. Plane gets a separate virtual host
 matching the server IP and proxies to the production Compose proxy on
 `127.0.0.1:8106`. Plane does not bind host ports `80`, `443`, `8000`, or
 `3000`-`3100`. This initial HTTP setup is for the office network or VPN only.
-After validation, switch to `plane.pulsepharma.net` with HTTPS at the existing
-external URL `https://plane.pulsepharma.net:51028`.
+After validation, switch to `plane.pulsepharma.net` with HTTPS at
+`https://plane.pulsepharma.net:51026` when the public network forwards port
+51026 to host port 443.
 
 ## Local production-like smoke test
 
@@ -291,9 +292,10 @@ different CIDR.
 ## Later HTTPS setup
 
 After the domain points to this server, change `PLANE_PUBLIC_URL` and the API
-and live origins to `https://plane.pulsepharma.net:51028`, verify the existing
+and live origins to `https://plane.pulsepharma.net:51026`, verify the existing
 certificate covers that hostname, then replace the IP site with
-`nginx.plane.conf.example`. That site redirects HTTP to HTTPS.
+`nginx.plane.conf.example`. That site redirects HTTP to HTTPS on public port
+51026, forwarded to host port 443.
 
 ## Post-deploy checks
 
