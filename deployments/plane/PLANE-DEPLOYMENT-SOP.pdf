@@ -1,0 +1,458 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R] /Count 8 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Length 4405 >>
+stream
+q 0.34 0.40 0.47 rg BT /F2 8 Tf 1 0 0 1 54.0 765.0 Tm (PLANE PROJECT MANAGEMENT  |  DEPLOYMENT SOP) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 755 m 558 755 l S Q
+q 0.08 0.22 0.37 rg BT /F2 22 Tf 1 0 0 1 54.0 698.0 Tm (Plane Project Management - Deployment SOP) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 658.0 Tm (Document purpose: reproducible production deployment and operations guide for the Plane instance hosted on) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 644.0 Tm (dte-apps.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 623.0 Tm (Audience: the dte Linux deployment account and repository maintainers.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 602.0 Tm (Production URL target: https://plane.pulsepharma.net:51026 over HTTPS.) Tj ET Q
+q 0.20 0.29 0.38 rg BT /F1 9.5 Tf 1 0 0 1 62.0 578.0 Tm (NOTE: Keep credentials out of this document, Git, terminal history, and chat. The) Tj ET Q
+q 0.20 0.29 0.38 rg BT /F1 9.5 Tf 1 0 0 1 62.0 554.0 Tm (NOTE: live server's private environment files are the source of truth for secrets.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 528.0 Tm (Application details) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 506.0 Tm (Item | Value) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 490.0 Tm (Application | Plane Project Management \(Pulsepharma deployment\)) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 474.0 Tm (VM hostname | dte-apps) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 458.0 Tm (VM public IP | 103.24.125.50 \(confirm if the host IP changes\)) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 442.0 Tm (VM user | dte) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 426.0 Tm (Application folder | /var/www/plane) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 410.0 Tm (GitHub organization | dte-pulse) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 394.0 Tm (GitHub repository | PlaneProjectManagment) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 378.0 Tm (Repository URL | https://github.com/dte-pulse/PlaneProjectManagment) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 362.0 Tm (Branch deployed | main) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 346.0 Tm (Runtime | Docker Compose production stack) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 330.0 Tm (Compose file | /var/www/plane/docker-compose.production.yml) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 314.0 Tm (Compose project | plane-pulsepharma) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 298.0 Tm (Private env directory | /etc/plane-pulsepharma) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 282.0 Tm (Systemd unit | plane-pulsepharma.service) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 266.0 Tm (Public hostname | plane.pulsepharma.net) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 250.0 Tm (Public access | HTTPS only; Sophos external port 51026 forwards to host port 443) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 234.0 Tm (TLS termination | Host Nginx, with the existing certificate for pulsepharma.net) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 218.0 Tm (Nginx upstream | 127.0.0.1:8106 by default) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 202.0 Tm (Database | External PostgreSQL on Aiven) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 186.0 Tm (Object storage | AWS S3 bucket hrappmodule \(confirm bucket and region in private config\)) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 170.0 Tm (Email | Microsoft 365 SMTP, STARTTLS on port 587) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 154.0 Tm (Deployment trigger | GitHub Actions push to main, or manual workflow dispatch) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 138.0 Tm (Actions workflow | .github/workflows/deploy-plane.yml) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 117.0 Tm (Service map) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 95.0 Tm (Plane area | Public path | Container/service) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 79.0 Tm (Main web app | / | web) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 42 m 558 42 l S Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 54.0 27.0 Tm (Pulsepharma internal deployment guide) Tj ET Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 508.0 27.0 Tm (Page 1) Tj ET Q
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 5543 >>
+stream
+q 0.34 0.40 0.47 rg BT /F2 8 Tf 1 0 0 1 54.0 765.0 Tm (PLANE PROJECT MANAGEMENT  |  DEPLOYMENT SOP) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 755 m 558 755 l S Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 724.0 Tm (API and authentication | /api, /auth, /static | api) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 708.0 Tm (Admin console | /god-mode | admin) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 692.0 Tm (Workspace/project UI | /spaces | space) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 676.0 Tm (Live collaboration | /live | live) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 660.0 Tm (Reverse proxy | Host loopback 8106; container port 80 | proxy) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 644.0 Tm (Background jobs | Internal only | worker, beat-worker) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 628.0 Tm (Cache and queue | Internal only | plane-redis, plane-mq) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 612.0 Tm (Sophos reserves its own public port 443, so Plane uses dedicated external HTTPS port 51026, forwarded to host) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 598.0 Tm (port 443. The browser URL is therefore https://plane.pulsepharma.net:51026 unless the Sophos rule changes.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 584.0 Tm (The host may keep port 80 for other apps, but Nginx and Sophos must not route Plane traffic over HTTP. The) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 570.0 Tm (Compose proxy binds only to loopback; its container port 80 is an internal upstream, not a public listener.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 544.0 Tm (1. Prepare the host and network) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 522.0 Tm (This is a shared application host. Review existing listeners and services before changing firewall rules, Nginx,) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 508.0 Tm (Docker, or systemd:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 485.0 Tm (hostname) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 475.0 Tm (id dte) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 465.0 Tm (sudo ss -lntp) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 455.0 Tm (sudo systemctl status nginx docker --no-pager) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 438.0 Tm (Network requirements:) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 417.0 Tm (Traffic | Allow from | Purpose) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 401.0 Tm (External TCP 51022 | Administrator IPs or approved deployment source | Sophos SSH forward to host SSH) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 385.0 Tm (TCP 443 | Host interface | Plane HTTPS listener through Nginx) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 369.0 Tm (External TCP 51026 | Approved client networks | Sophos forwards to host TCP 443) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 353.0 Tm (External TCP 51020 | Other apps only, if required | Shared HTTP forward; must not route Plane) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 337.0 Tm (TCP 80 | Do not route to Plane; retain only for other host apps if needed | Other vhosts or certificate validation) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 321.0 Tm (Outbound TCP 443 | Required registries and AWS endpoints | Docker image/dependency downloads and S3) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 305.0 Tm (Outbound TCP 587 | Microsoft 365 SMTP endpoint | Email STARTTLS) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 289.0 Tm (Outbound PostgreSQL port | Aiven database endpoint; confirm provider port | Database traffic) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 273.0 Tm (Do not expose Compose service ports such as API 8000, web/admin/space 3000, RabbitMQ 5672, or Valkey 6379.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 259.0 Tm (The production Compose file exposes only the proxy on 127.0.0.1:${PLANEPROXYPORT}.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 233.0 Tm (2. Confirm repository access and checkout) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 211.0 Tm (The host checkout must be owned by dte, and the host needs read access to the private repository. Use the) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 197.0 Tm (host's configured GitHub deploy key/SSH alias if HTTPS authentication is unavailable. Do not put a personal) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 183.0 Tm (access token in a Git URL.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 162.0 Tm (For a new host:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 139.0 Tm (sudo install -d -o dte -g dte -m 755 /var/www) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 129.0 Tm (sudo -u dte git clone --branch main \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 119.0 Tm (  https://github.com/dte-pulse/Plane_Project_Managment /var/www/plane) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 102.0 Tm (For the existing host:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 79.0 Tm (cd /var/www/plane) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 69.0 Tm (git status --short --branch) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 42 m 558 42 l S Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 54.0 27.0 Tm (Pulsepharma internal deployment guide) Tj ET Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 508.0 27.0 Tm (Page 2) Tj ET Q
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 5834 >>
+stream
+q 0.34 0.40 0.47 rg BT /F2 8 Tf 1 0 0 1 54.0 765.0 Tm (PLANE PROJECT MANAGEMENT  |  DEPLOYMENT SOP) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 755 m 558 755 l S Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 724.0 Tm (git remote -v) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 714.0 Tm (git branch --show-current) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 697.0 Tm (Do not overwrite local files or reset the checkout if it contains uncommitted work. The current deployment) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 683.0 Tm (workflow expects /var/www/plane and branch main.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 657.0 Tm (3. Configure private runtime files) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 635.0 Tm (Production secrets belong outside the repository in /etc/plane-pulsepharma. The expected files are:) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 614.0 Tm (File | Purpose) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 598.0 Tm (compose.env | Public URL, proxy port, env-file paths, S3 bucket, trusted proxy ranges) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 582.0 Tm (api.env | Aiven URL, Django key, AWS credentials, SMTP, service URLs, app settings) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 566.0 Tm (live.env | Live collaboration service URLs and matching live secret) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 550.0 Tm (root.env | RabbitMQ container credentials) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 534.0 Tm (Caddyfile.external | Internal Plane proxy routing configuration) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 518.0 Tm (For a new installation, create the directory and copy examples, then set permissions and edit values locally on) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 504.0 Tm (the host:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 481.0 Tm (sudo install -d -o dte -g dte -m 700 /etc/plane-pulsepharma) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 471.0 Tm (cd /var/www/plane) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 461.0 Tm (sudo install -o dte -g dte -m 600 deployments/plane/production.env.example /etc/plane-pulsepharm) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 451.0 Tm (a/compose.env) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 441.0 Tm (sudo install -o dte -g dte -m 600 deployments/plane/api.env.example /etc/plane-pulsepharma/api.e) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 431.0 Tm (nv) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 421.0 Tm (sudo install -o dte -g dte -m 600 deployments/plane/live.env.example /etc/plane-pulsepharma/live) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 411.0 Tm (.env) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 401.0 Tm (sudo install -o dte -g dte -m 600 deployments/plane/root.env.example /etc/plane-pulsepharma/root) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 391.0 Tm (.env) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 381.0 Tm (sudo install -o dte -g dte -m 600 deployments/plane/Caddyfile.external /etc/plane-pulsepharma/Ca) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 371.0 Tm (ddyfile.external) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 354.0 Tm (When maintaining an existing deployment, edit the private files in place. Do not copy example files over production) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 340.0 Tm (files: that would replace credentials and deployment-specific values.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 11 Tf 1 0 0 1 54.0 314.0 Tm (compose.env) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 295.0 Tm (Required target values:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 272.0 Tm (PLANE_PUBLIC_URL=https://plane.pulsepharma.net:51026) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 262.0 Tm (PLANE_PROXY_PORT=8106) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 252.0 Tm (PLANE_ROOT_ENV_FILE=/etc/plane-pulsepharma/root.env) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 242.0 Tm (PLANE_API_ENV_FILE=/etc/plane-pulsepharma/api.env) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 232.0 Tm (PLANE_LIVE_ENV_FILE=/etc/plane-pulsepharma/live.env) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 222.0 Tm (PLANE_PROXY_CONFIG=/etc/plane-pulsepharma/Caddyfile.external) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 212.0 Tm (AWS_S3_BUCKET_NAME=hrappmodule) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 202.0 Tm (TRUSTED_PROXIES=<nginx-and-docker-proxy-cidrs>) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 185.0 Tm (PLANEPUBLICURL has no path or trailing slash. With the current Sophos mapping, use) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 171.0 Tm (https://plane.pulsepharma.net:51026; that external port forwards to host port 443. The host proxy port is) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 157.0 Tm (loopback-only and is not user-facing.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 11 Tf 1 0 0 1 54.0 131.0 Tm (Application secrets and service settings) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 112.0 Tm (Set production values in api.env, live.env, and root.env; do not copy the placeholder values verbatim.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 91.0 Tm (- Aiven PostgreSQL: use the provider URL and SSL mode required by the) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 75.0 Tm (database. URL-encode reserved characters in the password.) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 42 m 558 42 l S Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 54.0 27.0 Tm (Pulsepharma internal deployment guide) Tj ET Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 508.0 27.0 Tm (Page 3) Tj ET Q
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 5313 >>
+stream
+q 0.34 0.40 0.47 rg BT /F2 8 Tf 1 0 0 1 54.0 765.0 Tm (PLANE PROJECT MANAGEMENT  |  DEPLOYMENT SOP) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 755 m 558 755 l S Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 724.0 Tm (- Django SECRETKEY: preserve the currently deployed key when connecting) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 708.0 Tm (to an existing Plane database. Plane uses it to decrypt saved integration values. Changing it can make stored) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 694.0 Tm (encrypted values unreadable.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 673.0 Tm (- AWS S3: use a least-privilege IAM credential scoped to the required) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 657.0 Tm (bucket. Keep USEMINIO=0; omit AWSS3ENDPOINTURL for AWS S3.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 636.0 Tm (- Redis/Valkey: REDISHOST=plane-redis, port 6379, URL) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 620.0 Tm (redis://plane-redis:6379/.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 599.0 Tm (- RabbitMQ: host plane-mq, port 5672, vhost plane; credentials in) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 583.0 Tm (api.env must match root.env.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 562.0 Tm (- Service origins: CORSALLOWEDORIGINS, WEBURL, APPBASEURL,) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 546.0 Tm (ADMINBASEURL, SPACEBASEURL, and LIVEBASEURL must use https://plane.pulsepharma.net:51026. Keep) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 532.0 Tm (configured subpaths such as /god-mode, /spaces, and /live in their respective BASEPATH settings.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 511.0 Tm (- Live secret: LIVESERVERSECRETKEY must match exactly between) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 495.0 Tm (api.env and live.env.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 474.0 Tm (- SMTP: Microsoft 365 uses smtp.office365.com, port 587, TLS enabled,) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 458.0 Tm (SSL disabled. Keep the mailbox app password only in api.env.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 437.0 Tm (- S3 bucket consistency: AWSS3BUCKETNAME in compose.env and api.env) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 421.0 Tm (must agree.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 400.0 Tm (Generate random secrets on the host without entering them in shell history:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 377.0 Tm (openssl rand -hex 32) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 360.0 Tm (Review permissions without displaying file contents:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 337.0 Tm (sudo ls -ld /etc/plane-pulsepharma) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 327.0 Tm (sudo ls -l /etc/plane-pulsepharma) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 305.0 Tm (4. Validate and build the production stack) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 283.0 Tm (Run commands from the repository root, always using the deployment project name and external env file:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 260.0 Tm (cd /var/www/plane) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 250.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 240.0 Tm (  -p plane-pulsepharma -f docker-compose.production.yml config --quiet) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 223.0 Tm (Back up the Aiven database before migrations. Do not run two independent Plane versions against the same live) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 209.0 Tm (database. If local development services are running against the production database, stop them before) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 195.0 Tm (production migrations. Build the images:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 172.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 162.0 Tm (  -p plane-pulsepharma -f docker-compose.production.yml build) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 145.0 Tm (Start the internal data services, run migrations, then start Plane:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 122.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 112.0 Tm (  -p plane-pulsepharma -f docker-compose.production.yml \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 102.0 Tm (  up -d plane-redis plane-mq) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 92.0 Tm ( ) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 82.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 72.0 Tm (  -p plane-pulsepharma -f docker-compose.production.yml run --rm migrator) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 42 m 558 42 l S Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 54.0 27.0 Tm (Pulsepharma internal deployment guide) Tj ET Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 508.0 27.0 Tm (Page 4) Tj ET Q
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 6088 >>
+stream
+q 0.34 0.40 0.47 rg BT /F2 8 Tf 1 0 0 1 54.0 765.0 Tm (PLANE PROJECT MANAGEMENT  |  DEPLOYMENT SOP) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 755 m 558 755 l S Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 724.0 Tm ( ) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 714.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 704.0 Tm (  -p plane-pulsepharma -f docker-compose.production.yml \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 694.0 Tm (  up -d web admin space api worker beat-worker live proxy) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 677.0 Tm (The application services are web, admin \(/god-mode\), space \(/spaces\), API, worker, beat-worker, live) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 663.0 Tm (collaboration, and the internal proxy. The database is external; production Compose does not create a local) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 649.0 Tm (PostgreSQL service.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 11 Tf 1 0 0 1 54.0 623.0 Tm (SMTP database synchronization) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 604.0 Tm (Plane stores SMTP configuration in the database. After API startup, apply the private api.env SMTP values) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 590.0 Tm (using the repository helper. It encrypts the password with Django SECRETKEY and does not print it:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 567.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 557.0 Tm (  -p plane-pulsepharma -f docker-compose.production.yml \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 547.0 Tm (  exec -T api python manage.py shell < deployments/plane/configure-smtp.py) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 525.0 Tm (5. Configure HTTPS-only Nginx) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 503.0 Tm (Create/verify the DNS A record plane.pulsepharma.net pointing to 103.24.125.50. The current Sophos routes use) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 489.0 Tm (external SSH port 51022 and shared HTTP port 51020; Plane uses its own external HTTPS port 51026, which) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 475.0 Tm (forwards to host Nginx port 443. Sophos itself owns external port 443. The user-facing URL is) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 461.0 Tm (https://plane.pulsepharma.net:51026.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 440.0 Tm (Nginx terminates TLS on host port 443. Install the repository's HTTPS-only example as a separate virtual host,) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 426.0 Tm (then adapt the certificate paths if needed:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 403.0 Tm (sudo cp /var/www/plane/deployments/plane/nginx.plane.conf.example \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 393.0 Tm (  /etc/nginx/sites-available/plane.pulsepharma.net) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 383.0 Tm (sudoedit /etc/nginx/sites-available/plane.pulsepharma.net) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 373.0 Tm (sudo ln -s /etc/nginx/sites-available/plane.pulsepharma.net \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 363.0 Tm (  /etc/nginx/sites-enabled/plane.pulsepharma.net) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 346.0 Tm (The server block must listen on 443 ssl, use the valid wildcard certificate, proxy to http://127.0.0.1:8106, and) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 332.0 Tm (set X-Forwarded-Proto https. Do not create or enable a Plane HTTP server block on port 80. On an existing) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 318.0 Tm (server, locate any old Plane HTTP site and remove/disable only that Plane site; preserve other applications') Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 304.0 Tm (Nginx virtual hosts.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 283.0 Tm (Validate before applying Nginx changes:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 260.0 Tm (sudo nginx -t) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 250.0 Tm (sudo systemctl reload nginx) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 240.0 Tm (sudo systemctl status nginx --no-pager) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 223.0 Tm (In Sophos/firewall/NAT, forward external TCP 51026 to this host's TCP 443 and allow only approved client) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 209.0 Tm (networks where applicable. Sophos reserves external port 443. Do not forward HTTP port 51020 or host port 80) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 195.0 Tm (to Plane. If another app requires HTTP on the shared host, its port 80 rule may remain, but Plane must not) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 181.0 Tm (answer or redirect from it.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 155.0 Tm (6. Install the systemd unit) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 133.0 Tm (The repository unit is configured for user/group dte, working directory /var/www/plane, and private) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 119.0 Tm (compose.env:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 96.0 Tm (sudo cp /var/www/plane/deployments/plane/plane-pulsepharma.service.example \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 86.0 Tm (  /etc/systemd/system/plane-pulsepharma.service) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 76.0 Tm (sudo systemctl daemon-reload) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 66.0 Tm (sudo systemctl enable --now plane-pulsepharma.service) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 42 m 558 42 l S Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 54.0 27.0 Tm (Pulsepharma internal deployment guide) Tj ET Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 508.0 27.0 Tm (Page 5) Tj ET Q
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 5510 >>
+stream
+q 0.34 0.40 0.47 rg BT /F2 8 Tf 1 0 0 1 54.0 765.0 Tm (PLANE PROJECT MANAGEMENT  |  DEPLOYMENT SOP) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 755 m 558 755 l S Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 724.0 Tm (sudo systemctl status plane-pulsepharma.service --no-pager) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 707.0 Tm (The unit is Type=oneshot with RemainAfterExit=yes; active \(exited\) is normal. Docker's unless-stopped policy) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 693.0 Tm (keeps containers running and restarts them after host boot. The unit is scoped to Compose project) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 679.0 Tm (plane-pulsepharma; do not use an unscoped docker compose down on this shared host.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 653.0 Tm (7. Configure GitHub Actions deployment) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 631.0 Tm (The workflow at .github/workflows/deploy-plane.yml runs on pushes to main and also supports manual dispatch) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 617.0 Tm (from GitHub Actions. Configure these repository secrets under Settings -> Secrets and variables -> Actions:) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 596.0 Tm (Secret | Value) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 580.0 Tm (EC2HOST | SSH-reachable hostname or IP for dte-apps) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 564.0 Tm (EC2USER | dte) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 548.0 Tm (EC2PORT | 51022 for the current Sophos SSH forward \(confirm if changed\)) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 532.0 Tm (EC2SSHKEY | Private SSH key whose public key is authorized for dte) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 516.0 Tm (The Actions key is the VM-login key; it is separate from any GitHub deploy key that the VM uses to pull the) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 502.0 Tm (private repository. Restrict the key to this host account. The deployment account must be able to pull main, run) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 488.0 Tm (Docker Compose, and read all private env files. The current workflow does not use sudo.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 467.0 Tm (For each deploy, Actions:) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 446.0 Tm (1. SSHes to the host and enters /var/www/plane.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 430.0 Tm (2. Pulls origin main with fast-forward only.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 414.0 Tm (3. Validates production Compose without printing config values.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 398.0 Tm (4. Builds production images.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 382.0 Tm (5. Runs the database migrator.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 366.0 Tm (6. Starts/recreates the Plane Compose services and reports compose ps.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 350.0 Tm (The workflow serializes production deployments. It does not run docker compose down, delete volumes, or reload) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 336.0 Tm (Nginx. A push that changes frontend origins requires the server's private compose.env to have the new origin) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 322.0 Tm (before the build so those values are embedded in the frontend images.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 296.0 Tm (8. Verify the deployment) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 274.0 Tm (On the host, check service state and the private upstream:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 251.0 Tm (cd /var/www/plane) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 241.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 231.0 Tm (  -p plane-pulsepharma -f docker-compose.production.yml ps) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 221.0 Tm (curl -I http://127.0.0.1:8106/) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 211.0 Tm (sudo nginx -t) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 201.0 Tm (sudo systemctl is-active plane-pulsepharma.service) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 184.0 Tm (From an approved client network:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 161.0 Tm (curl -I https://plane.pulsepharma.net:51026/) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 144.0 Tm (The browser URL is https://plane.pulsepharma.net:51026. Confirm the TLS certificate is valid and that login,) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 130.0 Tm (workspace pages, admin, file uploads, email, and live collaboration work. Confirm Plane is not reachable over HTTP) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 116.0 Tm (on port 80. Do not infer that from the Compose port mapping alone; check the active Nginx site and upstream) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 102.0 Tm (firewall.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 76.0 Tm (9. Routine deployment and rollback) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 42 m 558 42 l S Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 54.0 27.0 Tm (Pulsepharma internal deployment guide) Tj ET Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 508.0 27.0 Tm (Page 6) Tj ET Q
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 5950 >>
+stream
+q 0.34 0.40 0.47 rg BT /F2 8 Tf 1 0 0 1 54.0 765.0 Tm (PLANE PROJECT MANAGEMENT  |  DEPLOYMENT SOP) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 755 m 558 755 l S Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 724.0 Tm (Normal releases go to main; GitHub Actions performs the deployment. If deploying manually, use the same ordered) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 710.0 Tm (steps: fast-forward pull, Compose validation, build, database backup when applicable, migration, then up -d for) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 696.0 Tm (the application services. Avoid restarting unrelated host applications.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 675.0 Tm (If a code release fails:) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 654.0 Tm (1. Read the failed Actions log and host container logs.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 638.0 Tm (2. Identify the last known-good commit and check whether the failed release) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 622.0 Tm (introduced database migrations.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 601.0 Tm (3. Revert the code change with a new commit or deploy a known-good commit using) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 585.0 Tm (the repository's approved release process.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 564.0 Tm (4. Rebuild and start the services; do not delete Compose volumes.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 548.0 Tm (5. Restore a database backup only when the migration/data change requires it) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 532.0 Tm (and the restore plan has been reviewed. A code rollback alone may not reverse database migrations.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 511.0 Tm (Never use docker compose down -v for routine deployment or rollback; it deletes Plane's local RabbitMQ and) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 497.0 Tm (Valkey data volumes.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 471.0 Tm (10. Troubleshooting) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 449.0 Tm (Symptom | Check) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 433.0 Tm (Actions SSH connection refused | Confirm EC2HOST, EC2PORT, firewall/NAT SSH forwarding, and host SSH service.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 417.0 Tm (SSH authentication failure | Confirm EC2SSHKEY matches the public key in dte's authorizedkeys.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 401.0 Tm (git pull fails | Check the host deploy key/SSH alias and read access to the private repository.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 385.0 Tm (Compose says a variable is missing | Check compose.env path and required PLANE values; keep private values out of logs.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 369.0 Tm (Image build fails | Inspect the first failing Docker build step; warnings about large bundles or slow registry requests are not) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 357.0 Tm (necessarily fatal.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 341.0 Tm (Migration fails | Check Aiven reachability, database URL/SSL mode, permissions, and backup status before retrying.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 325.0 Tm (Site unavailable on HTTPS | Check container health/logs, loopback proxy, active Nginx site, certificate paths, and firewall 443) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 313.0 Tm (forwarding.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 297.0 Tm (Site still loads over HTTP | Find and disable the Plane-specific Nginx port 80 site and remove any firewall/NAT route to Plane. Do) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 285.0 Tm (not disable shared HTTP sites without checking their owners.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 269.0 Tm (Email does not send | Confirm private SMTP settings and rerun configure-smtp.py after API startup.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 253.0 Tm (Collaboration disconnects | Confirm /live routing, WebSocket headers, LIVESERVERSECRETKEY equality, and origins.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 8.5 Tf 1 0 0 1 58.0 237.0 Tm (S3 uploads fail | Verify bucket, region, IAM permissions, and matching bucket settings; never print AWS keys.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 221.0 Tm (View logs without displaying environment files:) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 198.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 188.0 Tm (  -p plane-pulsepharma -f docker-compose.production.yml \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 178.0 Tm (  logs --tail=100 api worker beat-worker live proxy web admin) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 168.0 Tm (sudo journalctl -u plane-pulsepharma.service -n 100 --no-pager) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 146.0 Tm (11. Operational safety and backups) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 124.0 Tm (- Back up the external Aiven PostgreSQL database before migrations and confirm) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 108.0 Tm (the recovery procedure periodically.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 87.0 Tm (- Keep separate least-privilege AWS and database credentials where possible.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 71.0 Tm (- Rotate any credential that has been exposed and update the corresponding) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 42 m 558 42 l S Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 54.0 27.0 Tm (Pulsepharma internal deployment guide) Tj ET Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 508.0 27.0 Tm (Page 7) Tj ET Q
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 18 0 R >>
+endobj
+20 0 obj
+<< /Length 2898 >>
+stream
+q 0.34 0.40 0.47 rg BT /F2 8 Tf 1 0 0 1 54.0 765.0 Tm (PLANE PROJECT MANAGEMENT  |  DEPLOYMENT SOP) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 755 m 558 755 l S Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 724.0 Tm (private env file; never commit secrets.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 703.0 Tm (- Preserve Django SECRETKEY when reusing the existing database.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 687.0 Tm (- Preserve RabbitMQ and Valkey Compose volumes. Do not prune volumes as part of) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 671.0 Tm (deploy cleanup.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 650.0 Tm (- On this shared server, keep all Compose commands explicitly scoped with) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 634.0 Tm (-p plane-pulsepharma and the production Compose file.) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 9.5 Tf 1 0 0 1 66.0 613.0 Tm (- Keep public access HTTPS-only. Sophos external port 51026 forwards to host) Tj ET Q
+q 0.12 0.16 0.22 rg BT /F1 10 Tf 1 0 0 1 54.0 597.0 Tm (port 443; the internal proxy port 80 is loopback-only and not public.) Tj ET Q
+q 0.08 0.31 0.47 rg BT /F2 13 Tf 1 0 0 1 54.0 571.0 Tm (Quick reference) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 547.0 Tm (# Status) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 537.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 527.0 Tm (  -p plane-pulsepharma -f /var/www/plane/docker-compose.production.yml ps) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 517.0 Tm ( ) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 507.0 Tm (# Logs) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 497.0 Tm (docker compose --env-file /etc/plane-pulsepharma/compose.env \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 487.0 Tm (  -p plane-pulsepharma -f /var/www/plane/docker-compose.production.yml \\) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 477.0 Tm (  logs --tail=100 api worker beat-worker live proxy) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 467.0 Tm ( ) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 457.0 Tm (# Nginx validation/reload after a config change) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 447.0 Tm (sudo nginx -t && sudo systemctl reload nginx) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 437.0 Tm ( ) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 427.0 Tm (# systemd status) Tj ET Q
+q 0.14 0.19 0.25 rg BT /F3 7.5 Tf 1 0 0 1 63.0 417.0 Tm (sudo systemctl status plane-pulsepharma.service --no-pager) Tj ET Q
+q 0.78 0.82 0.86 RG 0.5 w 54 42 m 558 42 l S Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 54.0 27.0 Tm (Pulsepharma internal deployment guide) Tj ET Q
+q 0.42 0.46 0.51 rg BT /F1 8 Tf 1 0 0 1 508.0 27.0 Tm (Page 8) Tj ET Q
+endstream
+endobj
+21 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 20 0 R >>
+endobj
+xref
+0 22
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000169 00000 n 
+0000000239 00000 n 
+0000000314 00000 n 
+0000000382 00000 n 
+0000004839 00000 n 
+0000004985 00000 n 
+0000010580 00000 n 
+0000010726 00000 n 
+0000016613 00000 n 
+0000016761 00000 n 
+0000022127 00000 n 
+0000022275 00000 n 
+0000028416 00000 n 
+0000028564 00000 n 
+0000034127 00000 n 
+0000034275 00000 n 
+0000040278 00000 n 
+0000040426 00000 n 
+0000043377 00000 n 
+trailer
+<< /Size 22 /Root 1 0 R >>
+startxref
+43525
+%%EOF

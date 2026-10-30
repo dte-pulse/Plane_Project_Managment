@@ -18,9 +18,10 @@ Configure the EC2 security group and any upstream firewall/NAT:
 
 | Traffic            | Allow from                       | Purpose                                               |
 | ------------------ | -------------------------------- | ----------------------------------------------------- |
-| TCP 22             | Administrator IPs only           | SSH                                                   |
+| TCP 22             | Administrator IPs only           | Host SSH; Sophos may expose external port 51022       |
 | TCP 80             | Other apps only, if required     | Must not route to Plane                               |
-| TCP 443            | Approved client CIDRs            | Plane HTTPS through Nginx                             |
+| TCP 443            | Host interface                   | Nginx TLS listener                                    |
+| External TCP 51026 | Approved client CIDRs            | Sophos HTTPS forward to host TCP 443                  |
 | Outbound TCP 10644 | Aiven endpoint                   | Example database port; use the provider's actual port |
 | Outbound TCP 443   | AWS and image/package registries | S3 and downloads                                      |
 | Outbound TCP 587   | Microsoft 365 SMTP               | STARTTLS email                                        |
@@ -76,7 +77,7 @@ Set the exact browser-visible origin, private proxy port, file paths, S3 bucket,
 and trusted proxy ranges:
 
 ```env
-PLANE_PUBLIC_URL=https://plane.example.com
+PLANE_PUBLIC_URL=https://plane.pulsepharma.net:51026
 PLANE_PROXY_PORT=8106
 PLANE_ROOT_ENV_FILE=/etc/plane-pulsepharma/root.env
 PLANE_API_ENV_FILE=/etc/plane-pulsepharma/api.env
@@ -87,10 +88,11 @@ TRUSTED_PROXIES=<nginx-and-docker-proxy-cidrs>
 ```
 
 `PLANE_PUBLIC_URL` is embedded into frontend images at build time and used as a
-service origin. Use the HTTPS domain on standard port 443, with no port suffix:
+service origin. Sophos reserves external port 443, so Plane uses external port
+51026 forwarded to host port 443:
 
 ```text
-HTTPS only:       https://plane.example.com
+HTTPS only:       https://plane.pulsepharma.net:51026
 ```
 
 Do not add a path or trailing slash. Use the same origin in API and live CORS
@@ -226,13 +228,13 @@ Check that the selected loopback proxy port is free before starting Compose.
 ### HTTPS by domain
 
 Point DNS at EC2, obtain a certificate for the domain, and adapt
-`nginx.plane.conf.example` to the certificate paths. Forward standard public
-HTTPS port 443 to host port 443. Set `PLANE_PUBLIC_URL` and all API/live origins
-to `https://<domain>`. Remove any enabled Plane-specific HTTP virtual host on
-port 80 and remove Plane's port-80 firewall or router rule. Rebuild web, admin,
-and space because frontend origins are embedded at build time, then validate
-and reload Nginx. The host may keep port 80 open for unrelated applications;
-verify it does not route to Plane.
+`nginx.plane.conf.example` to the certificate paths. Sophos reserves external
+port 443, so forward external TCP 51026 to host port 443. Set `PLANE_PUBLIC_URL`
+and API/live origins to `https://<domain>:51026`. Remove any enabled
+Plane-specific HTTP virtual host on port 80 and remove Plane's HTTP firewall or
+router route. Rebuild web, admin, and space because frontend origins are
+embedded at build time, then validate and reload Nginx. The host may keep port
+80 open for unrelated applications; verify it does not route to Plane.
 
 ## 6. Install systemd
 
