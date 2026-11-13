@@ -1,59 +1,59 @@
-name: Deploy Plane
+# name: Deploy Plane
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
 
-concurrency:
-  group: plane-production
-  cancel-in-progress: false
+# concurrency:
+#   group: plane-production
+#   cancel-in-progress: false
 
-jobs:
-  deploy:
-    name: Deploy to Plane host
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
+# jobs:
+#   deploy:
+#     name: Deploy to Plane host
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 60
 
-    steps:
-      - name: Deploy Plane over SSH
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          port: ${{ secrets.EC2_PORT }}
-          command_timeout: 45m
-          script: |
-            set -euo pipefail
+#     steps:
+#       - name: Deploy Plane over SSH
+#         uses: appleboy/ssh-action@v1.2.0
+#         with:
+#           host: ${{ secrets.EC2_HOST }}
+#           username: ${{ secrets.EC2_USER }}
+#           key: ${{ secrets.EC2_SSH_KEY }}
+#           port: ${{ secrets.EC2_PORT }}
+#           command_timeout: 45m
+#           script: |
+#             set -euo pipefail
 
-            cd /var/www/plane
+#             cd /var/www/plane
 
-            compose() {
-              docker compose \
-                --env-file /etc/plane-pulsepharma/compose.env \
-                -p plane-pulsepharma \
-                -f docker-compose.production.yml \
-                "$@"
-            }
+#             compose() {
+#               docker compose \
+#                 --env-file /etc/plane-pulsepharma/compose.env \
+#                 -p plane-pulsepharma \
+#                 -f docker-compose.production.yml \
+#                 "$@"
+#             }
 
-            echo "Fetching latest Plane code..."
-            git pull --ff-only origin main
+#             echo "Fetching latest Plane code..."
+#             git pull --ff-only origin main
 
-            echo "Validating production Compose configuration..."
-            compose config --quiet
+#             echo "Validating production Compose configuration..."
+#             compose config --quiet
 
-            echo "Building Plane images..."
-            compose build
+#             echo "Building Plane images..."
+#             compose build
 
-            echo "Running database migrations..."
-            compose run --rm migrator
+#             echo "Running database migrations..."
+#             compose run --rm migrator
 
-            echo "Starting updated Plane services..."
-            compose up -d web admin space api worker beat-worker live proxy
+#             echo "Starting updated Plane services..."
+#             compose up -d web admin space api worker beat-worker live proxy
 
-            echo "Plane deployment status:"
-            compose ps
+#             echo "Plane deployment status:"
+#             compose ps
 
-# cicd comment testing   
+# # cicd comment testing   
